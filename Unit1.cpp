@@ -490,7 +490,7 @@ void __fastcall TForm1::Generarlistadoinversodeordenalingresado1Click(TObject *S
    for (i=totalreg-1; i>=0; --i){
 	f1.seekg(i*sizeof(RegAlumno),ios::beg);
 	f1.read((char*)&reg,sizeof(RegAlumno));
-	if (reg.marca!='*') {           //Revisar codigo
+	if (reg.marca!='*') {
 	 linea=IntToStr((int)reg.cod)+","+reg.nom+","+reg.dir+","+IntToStr((int)reg.fecha.dia)+"/"+IntToStr((int)reg.fecha.mes)+"/"+IntToStr((int)reg.fecha.año)+","+IntToStr((int)reg.telf);
 	 n=linea.Length();
 	 for (j=1; j<=n; j++) {
@@ -536,6 +536,69 @@ void __fastcall TForm1::Devolverlacantidaddelineasquetienenmenosde3palabras1Clic
   AnsiString rutalocal=OpenTextFileDialog1->FileName;
   ShowMessage(IntToStr(DevolverCant(rutalocal)));
  }
+}
+
+void DeleteSpace(AnsiString NomArch){
+ AnsiString linea; char lin[500]; Word i,n;
+ fstream pf1(NomArch.c_str());
+ ofstream pf2("temporal.tmp");
+ if (!pf1.fail()) {
+  while (!pf1.eof()){
+   pf1.getline(lin,500);
+   linea = lin; linea=linea.TrimLeft(); strcpy(lin,linea.c_str());
+   n=strlen(lin);
+   for (i = 0; i < n; i++) {
+	pf2.put(lin[i]);
+   }
+
+   if (!pf1.eof()) {
+	pf2.put(10);
+   }
+  }
+  pf1.close(); pf2.close();
+  remove(NomArch.c_str());
+  rename("temporal.tmp",NomArch.c_str());
+ }
+}
+
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::Eliminarlineasquetienenalmenosunnmeroconmenosde4digitos1Click(TObject *Sender)
+{ AnsiString rutalocal,linea; char caracter;
+ Word dignum=0; bool nocopy,antesnum;
+ nocopy=false; antesnum=false;
+
+ if (OpenTextFileDialog1->Execute())
+  rutalocal=OpenTextFileDialog1->FileName;
+ ofstream pf2("temporal.tmp");
+ fstream pf1(rutalocal.c_str(),ios::in);
+ if (!pf1.fail()) {
+  linea="";
+  while (pf1.read((char*)&caracter,1)) {
+   linea=linea+caracter;
+   if (isdigit(caracter)){
+	antesnum=true;
+	dignum++;
+   }
+   if (isalpha(caracter)||caracter==10) {
+	if (dignum<4&&antesnum==true)                //Verificar cuando antes ha habido un numero
+	 nocopy=true;
+    antesnum=false;
+	dignum=0;
+   }
+
+   if (caracter==10&&!nocopy)                    //Revisar orden
+	for (int i=0; i<strlen(linea); i++)
+	 pf2.put(linea[i]);
+
+
+  }
+  pf1.close(); pf2.close();
+  remove(rutalocal.c_str());
+  rename("temporal.tmp",rutalocal.c_str());
+ }
+
 }
 //---------------------------------------------------------------------------
 

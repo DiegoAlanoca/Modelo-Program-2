@@ -49,6 +49,7 @@ __published:	// IDE-managed Components
 	TBitBtn *BitBtn1;
 	TMenuItem *Devolverlacantidaddelineasquetienenmenosde3palabras1;
 	TOpenTextFileDialog *OpenTextFileDialog1;
+	TMenuItem *Eliminarlineasquetienenalmenosunnmeroconmenosde4digitos1;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
@@ -67,6 +68,9 @@ __published:	// IDE-managed Components
 	void __fastcall Button14Click(TObject *Sender);
 	void __fastcall Generarlistadoinversodeordenalingresado1Click(TObject *Sender);
 	void __fastcall Devolverlacantidaddelineasquetienenmenosde3palabras1Click(TObject *Sender);
+	void __fastcall Eliminarlineasquetienenalmenosunnmeroconmenosde4digitos1Click(TObject *Sender);
+
+
 
 
 

@@ -405,6 +405,12 @@ object Form1: TForm1
         Caption = 'Devolver la cantidad de lineas que tienen menos de 3 palabras'
         OnClick = Devolverlacantidaddelineasquetienenmenosde3palabras1Click
       end
+      object Eliminarlineasquetienenalmenosunnmeroconmenosde4digitos1: TMenuItem
+        Caption = 
+          'Eliminar lineas que tienen almenos un n'#250'mero con menos de 4 digi' +
+          'tos'
+        OnClick = Eliminarlineasquetienenalmenosunnmeroconmenosde4digitos1Click
+      end
     end
   end
   object OpenTextFileDialog1: TOpenTextFileDialog

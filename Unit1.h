@@ -52,6 +52,8 @@ __published:	// IDE-managed Components
 	TMenuItem *Eliminarlineasquetienenalmenosunnmeroconmenosde4digitos1;
 	TMenuItem *EliminarRegistrosdenmeroqueterminenen201;
 	TMenuItem *EliminarMarcadetodoslosregistros1;
+	TMenuItem *Modificarlosregistrosaumentando1diaenfechadenacimiento1;
+	TMenuItem *Hacerlistadoderegistroscodigoqueterminanen01;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
@@ -73,6 +75,10 @@ __published:	// IDE-managed Components
 	void __fastcall Eliminarlineasquetienenalmenosunnmeroconmenosde4digitos1Click(TObject *Sender);
 	void __fastcall EliminarRegistrosdenmeroqueterminenen201Click(TObject *Sender);
 	void __fastcall EliminarMarcadetodoslosregistros1Click(TObject *Sender);
+	void __fastcall Modificarlosregistrosaumentando1diaenfechadenacimiento1Click(TObject *Sender);
+	void __fastcall Hacerlistadoderegistroscodigoqueterminanen01Click(TObject *Sender);
+
+
 
 
 

@@ -419,6 +419,14 @@ object Form1: TForm1
         Caption = 'Eliminar Marca de todos los registros'
         OnClick = EliminarMarcadetodoslosregistros1Click
       end
+      object Modificarlosregistrosaumentando1diaenfechadenacimiento1: TMenuItem
+        Caption = 'Modificar los registros aumentando 1 dia en fecha de nacimiento'
+        OnClick = Modificarlosregistrosaumentando1diaenfechadenacimiento1Click
+      end
+      object Hacerlistadoderegistroscodigoqueterminanen01: TMenuItem
+        Caption = 'Hacer listado de registros codigo que terminan en 0'
+        OnClick = Hacerlistadoderegistroscodigoqueterminanen01Click
+      end
     end
   end
   object OpenTextFileDialog1: TOpenTextFileDialog

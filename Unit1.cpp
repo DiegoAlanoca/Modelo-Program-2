@@ -623,55 +623,86 @@ void __fastcall TForm1::Eliminarlineasquetienenalmenosunnmeroconmenosde4digitos1
  }
 }
 //---------------------------------------------------------------------------
-bool TerminaEn20(Cardinal telefono)
-{
-
-}
 
 void __fastcall TForm1::EliminarRegistrosdenmeroqueterminenen201Click(TObject *Sender)
 {
- fstream f1(rutafinal.c_str(),ios::in | ios::out | ios::binary);    //Revisar bucle de lectura y escritura
- if (!f1.fail()) {
-  RegAlumno registrotemporal;
-	while (!f1.eof()) {
-	 f1.read((char*)&registrotemporal,sizeof(registrotemporal));
-	 if ( ( registrotemporal.telf%100==20)&&registrotemporal.marca!='*' ) {
-      registrotemporal.marca='*';
-	  f1.seekp(-sizeof(registrotemporal),ios::cur);
-	  f1.write((char*)&registrotemporal,sizeof(RegAlumno));
-	  f1.seekp(0,ios::cur);
-
-	 }
-     ShowMessage(registrotemporal.nom);
+  fstream f1(rutafinal.c_str(), ios::in | ios::out | ios::binary);
+  RegAlumno reg; long posicionActual;
+	while (f1.peek() != EOF) {
+		posicionActual = f1.tellg();
+		f1.read((char*)&reg, sizeof(RegAlumno));
+		if (f1.gcount() == sizeof(RegAlumno)) {
+		 if ((reg.telf % 100 == 20) && reg.marca != '*') {
+		  reg.marca = '*';
+		  f1.seekp(posicionActual, ios::beg);
+		  f1.write((char*)&reg, sizeof(RegAlumno));
+		  f1.seekg(posicionActual + sizeof(RegAlumno), ios::beg);
+		 }
+		}
 	}
-/*	if ( ( registrotemporal.telf%100==20)&&registrotemporal.marca!='*' ) {
-	 registrotemporal.marca='*';
-	 f1.seekg(-sizeof(registrotemporal),ios::cur);
-	 f1.write((char*)&registrotemporal,sizeof(RegAlumno));
-	}  */
-  f1.close();
-  ShowMessage("Registros Eliminados");
- }
-
-
+	f1.close();
+	ShowMessage("Registros eliminados con numeros que terminan en 20");
 }
 //---------------------------------------------------------------------------
 
 
 void __fastcall TForm1::EliminarMarcadetodoslosregistros1Click(TObject *Sender)
 { fstream f1(rutafinal.c_str(), ios::in | ios::out | ios::binary);
- RegAlumno alumnotemp;
- while (f1.read((char*)&alumnotemp,sizeof(RegAlumno))) {
-  alumnotemp.marca=' ';
-  f1.seekg(-sizeof(alumnotemp),ios::cur);
-  f1.write((char*)&alumnotemp,sizeof(RegAlumno));
-  f1.seekg(0,ios::cur);
+ RegAlumno alumnotemp; long posicionactual;
+ while (f1.peek()!=EOF) {
+  posicionactual=f1.tellg();
+  f1.read((char*)&alumnotemp,sizeof(alumnotemp));
+  if (f1.gcount()==sizeof(alumnotemp)) {
+   alumnotemp.marca=' ';
+   f1.seekp(posicionactual,ios::beg);
+   f1.write((char*)&alumnotemp,sizeof(alumnotemp));
+   f1.seekg(posicionactual+sizeof(alumnotemp),ios::beg);
+  }
  }
-/*  alumnotemp.marca=' ';
-  f1.seekg(-sizeof(alumnotemp),ios::cur);
-  f1.write((char*)&alumnotemp,sizeof(RegAlumno));   */
  f1.close();
- ShowMessage("Registros Restaurados");
+ ShowMessage("Registros con marca limpia");
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Modificarlosregistrosaumentando1diaenfechadenacimiento1Click(TObject *Sender)
+{ fstream f(rutafinal.c_str(),ios::in|ios::out|ios::binary);
+ RegAlumno alumnotemp; long posicion;
+ while (f.peek()!=EOF) {
+	posicion=f.tellg();
+	f.read((char*)&alumnotemp,sizeof(alumnotemp));
+	if (f.gcount()==sizeof(alumnotemp)) {
+	 alumnotemp.fecha.dia++;
+	 f.seekp(posicion,ios::beg);
+	 f.write((char*)&alumnotemp,sizeof(alumnotemp));
+	 f.seekg(posicion+sizeof(alumnotemp),ios::beg);
+	}
+ }
+ f.close();
+ ShowMessage("Aumentado +1 dia a cada registro");
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Hacerlistadoderegistroscodigoqueterminanen01Click(TObject *Sender)
+{ AnsiString rutaguardado=ruta+"ListaQueTerminanEn0.txt";
+ ofstream f1(rutaguardado.c_str());
+ ifstream f2(rutafinal.c_str());
+ if (!f1.fail()) {
+	AnsiString linea;
+	RegAlumno temp;
+	while (f2.read((char*)&temp, sizeof(temp))) {
+	 if (temp.cod%10==0){
+	  linea=IntToStr((int)temp.cod)+","+temp.nom+","+temp.dir+","+
+	  IntToStr((int)temp.fecha.dia)+"/"+IntToStr((int)temp.fecha.mes)+
+	  "/"+IntToStr((int)temp.fecha.año)+","+IntToStr((int)temp.telf);
+	  f1<<linea.c_str()<<std::endl;
+	 }
+
+	}
+	f1.close();
+	f2.close();
+	ShowMessage("Listado Generado");
+ }
+
 }
 //---------------------------------------------------------------------------
 

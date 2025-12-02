@@ -16,8 +16,9 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 //---------------------------------------------------------------------------
 void __fastcall TForm1::FormCreate(TObject *Sender)
 {
- ruta = "C:\\Users\\diego\\Desktop\\Programacion 2\\ArchivosAnder\\Pruebas Personal\\";
+ ruta = "C:\\Users\\diego\\Desktop\\Modelo-Program-2\\Listados\\";
  nom = "Alumnos.dat";
+ rutafinal=ruta+nom;
  AnsiString nomArch = ruta+nom;
  nomIdxcod = ruta+"IndicePorCod.idx";
  nomIdxNom = ruta+"InidicePorNom.idx";
@@ -198,13 +199,15 @@ void __fastcall TForm1::Edit1Exit(TObject *Sender)
   codi=StrToInt(Edit1->Text);
   fstream f(nomArch.c_str(),ios::binary|ios::in);
   if (!f.fail()) {
-	/*while (!f.eof()&&!hallado){
-	 f.read((char*)&reg,sizeof(reg));  Busqueda Secuencial
-	 if (!f.eof()) {
-	  hallado = (reg.cod == codi)&&(reg.marca!='*');
-	 }*/
+		while (!f.eof()&&!hallado)
+		{
+		 f.read((char*)&reg,sizeof(reg));  //Busqueda Secuencial
+		 if (!f.eof()) {
+		  hallado = (reg.cod == codi)&&(reg.marca!='*');
+		 }
+		}
 	 p=BusBin(codi);
-	}
+  }
 	if (p >=0) { //Hallado
 	 f.seekg(p); f.read((char*)&reg,sizeof(reg));
 	 Edit2->Text = reg.nom;
@@ -565,40 +568,110 @@ void DeleteSpace(AnsiString NomArch){
 
 
 void __fastcall TForm1::Eliminarlineasquetienenalmenosunnmeroconmenosde4digitos1Click(TObject *Sender)
-{ AnsiString rutalocal,linea; char caracter;
- Word dignum=0; bool nocopy,antesnum;
- nocopy=false; antesnum=false;
-
+{AnsiString rutalocal;
  if (OpenTextFileDialog1->Execute())
-  rutalocal=OpenTextFileDialog1->FileName;
+	rutalocal = OpenTextFileDialog1->FileName;
  ofstream pf2("temporal.tmp");
- fstream pf1(rutalocal.c_str(),ios::in);
+ fstream pf1(rutalocal.c_str(), ios::in | ios::binary);
+
  if (!pf1.fail()) {
-  linea="";
-  while (pf1.read((char*)&caracter,1)) {
-   linea=linea+caracter;
-   if (isdigit(caracter)){
-	antesnum=true;
-	dignum++;
-   }
-   if (isalpha(caracter)||caracter==10) {
-	if (dignum<4&&antesnum==true)                //Verificar cuando antes ha habido un numero
-	 nocopy=true;
-    antesnum=false;
-	dignum=0;
-   }
+	AnsiString linea="";
+	char caracter;
+	int contDigitos=0;
+	bool borrarLinea=false;
+	bool estoyEnNumero = false;
 
-   if (caracter==10&&!nocopy)                    //Revisar orden
-	for (int i=0; i<strlen(linea); i++)
-	 pf2.put(linea[i]);
+	while (pf1.read((char*)&caracter, 1)) {
+		if (caracter == 10) {
+			if (estoyEnNumero && contDigitos < 4 && contDigitos > 0) {
+			 borrarLinea = true;
+			}
+			if (!borrarLinea) {
+			 pf2 << linea.c_str() << std::endl;
+			}
+			 linea = "";
+			 borrarLinea = false;
+			 estoyEnNumero = false;
+			 contDigitos = 0;
+		}
+		else if (caracter != 13) {
+		 linea += caracter;
+			 if (isdigit(caracter)) {
+			  estoyEnNumero = true;
+			  contDigitos++;
+			 }
+			 else {
+				if (estoyEnNumero) {
+				 if (contDigitos < 4) {
+				  borrarLinea = true;
+				 }
+				 estoyEnNumero = false;
+				 contDigitos = 0;
+				}
+			 }
+		}
+	}
+	 if (linea != "") {
+		if (estoyEnNumero && contDigitos<4 && contDigitos>0) borrarLinea = true;
+		if (!borrarLinea) pf2 << linea.c_str();
+	 }
+	  pf1.close();
+	  pf2.close();
+	  remove(rutalocal.c_str());
+	  rename("temporal.tmp", rutalocal.c_str());
+	  ShowMessage("Proceso terminado correctamente");
+ }
+}
+//---------------------------------------------------------------------------
+bool TerminaEn20(Cardinal telefono)
+{
 
+}
 
-  }
-  pf1.close(); pf2.close();
-  remove(rutalocal.c_str());
-  rename("temporal.tmp",rutalocal.c_str());
+void __fastcall TForm1::EliminarRegistrosdenmeroqueterminenen201Click(TObject *Sender)
+{
+ fstream f1(rutafinal.c_str(),ios::in | ios::out | ios::binary);    //Revisar bucle de lectura y escritura
+ if (!f1.fail()) {
+  RegAlumno registrotemporal;
+	while (!f1.eof()) {
+	 f1.read((char*)&registrotemporal,sizeof(registrotemporal));
+	 if ( ( registrotemporal.telf%100==20)&&registrotemporal.marca!='*' ) {
+      registrotemporal.marca='*';
+	  f1.seekp(-sizeof(registrotemporal),ios::cur);
+	  f1.write((char*)&registrotemporal,sizeof(RegAlumno));
+	  f1.seekp(0,ios::cur);
+
+	 }
+     ShowMessage(registrotemporal.nom);
+	}
+/*	if ( ( registrotemporal.telf%100==20)&&registrotemporal.marca!='*' ) {
+	 registrotemporal.marca='*';
+	 f1.seekg(-sizeof(registrotemporal),ios::cur);
+	 f1.write((char*)&registrotemporal,sizeof(RegAlumno));
+	}  */
+  f1.close();
+  ShowMessage("Registros Eliminados");
  }
 
+
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::EliminarMarcadetodoslosregistros1Click(TObject *Sender)
+{ fstream f1(rutafinal.c_str(), ios::in | ios::out | ios::binary);
+ RegAlumno alumnotemp;
+ while (f1.read((char*)&alumnotemp,sizeof(RegAlumno))) {
+  alumnotemp.marca=' ';
+  f1.seekg(-sizeof(alumnotemp),ios::cur);
+  f1.write((char*)&alumnotemp,sizeof(RegAlumno));
+  f1.seekg(0,ios::cur);
+ }
+/*  alumnotemp.marca=' ';
+  f1.seekg(-sizeof(alumnotemp),ios::cur);
+  f1.write((char*)&alumnotemp,sizeof(RegAlumno));   */
+ f1.close();
+ ShowMessage("Registros Restaurados");
 }
 //---------------------------------------------------------------------------
 

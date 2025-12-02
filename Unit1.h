@@ -50,6 +50,8 @@ __published:	// IDE-managed Components
 	TMenuItem *Devolverlacantidaddelineasquetienenmenosde3palabras1;
 	TOpenTextFileDialog *OpenTextFileDialog1;
 	TMenuItem *Eliminarlineasquetienenalmenosunnmeroconmenosde4digitos1;
+	TMenuItem *EliminarRegistrosdenmeroqueterminenen201;
+	TMenuItem *EliminarMarcadetodoslosregistros1;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
@@ -69,6 +71,9 @@ __published:	// IDE-managed Components
 	void __fastcall Generarlistadoinversodeordenalingresado1Click(TObject *Sender);
 	void __fastcall Devolverlacantidaddelineasquetienenmenosde3palabras1Click(TObject *Sender);
 	void __fastcall Eliminarlineasquetienenalmenosunnmeroconmenosde4digitos1Click(TObject *Sender);
+	void __fastcall EliminarRegistrosdenmeroqueterminenen201Click(TObject *Sender);
+	void __fastcall EliminarMarcadetodoslosregistros1Click(TObject *Sender);
+
 
 
 
@@ -77,6 +82,7 @@ __published:	// IDE-managed Components
 private:	// User declarations
  AnsiString nom; //Nombre del archivo
  AnsiString ruta; //Ruta del archivo
+ AnsiString rutafinal; //Ruta completa para no repetir
  AnsiString nomIdxcod; //Nombre del archivo indice por codigo
  AnsiString nomIdxNom; //Nombre del archivo indice por nombre
 public:		// User declarations

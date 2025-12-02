@@ -411,6 +411,14 @@ object Form1: TForm1
           'tos'
         OnClick = Eliminarlineasquetienenalmenosunnmeroconmenosde4digitos1Click
       end
+      object EliminarRegistrosdenmeroqueterminenen201: TMenuItem
+        Caption = 'Eliminar Registros de n'#250'mero que terminen en 20'
+        OnClick = EliminarRegistrosdenmeroqueterminenen201Click
+      end
+      object EliminarMarcadetodoslosregistros1: TMenuItem
+        Caption = 'Eliminar Marca de todos los registros'
+        OnClick = EliminarMarcadetodoslosregistros1Click
+      end
     end
   end
   object OpenTextFileDialog1: TOpenTextFileDialog

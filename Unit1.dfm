@@ -392,6 +392,23 @@ object Form1: TForm1
     NumGlyphs = 2
     TabOrder = 21
   end
+  object Button15: TButton
+    Left = 504
+    Top = 328
+    Width = 369
+    Height = 25
+    Caption = 'Empieza en Consonante y termina en Vocal'
+    TabOrder = 22
+    OnClick = Button15Click
+  end
+  object Edit8: TEdit
+    Left = 73
+    Top = 22
+    Width = 232
+    Height = 33
+    TabOrder = 23
+    Text = 'Edit8'
+  end
   object MainMenu1: TMainMenu
     Left = 592
     Top = 8
@@ -426,6 +443,14 @@ object Form1: TForm1
       object Hacerlistadoderegistroscodigoqueterminanen01: TMenuItem
         Caption = 'Hacer listado de registros codigo que terminan en 0'
         OnClick = Hacerlistadoderegistroscodigoqueterminanen01Click
+      end
+      object Examen11: TMenuItem
+        Caption = 'Examen 1'
+        OnClick = Examen11Click
+      end
+      object Examen31: TMenuItem
+        Caption = 'Examen 3'
+        OnClick = Examen31Click
       end
     end
   end

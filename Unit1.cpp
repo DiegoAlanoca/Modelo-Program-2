@@ -704,5 +704,71 @@ void __fastcall TForm1::Hacerlistadoderegistroscodigoqueterminanen01Click(TObjec
  }
 
 }
+bool EsVocal(Char caracter)
+{ AnsiString vocales="aeiouáéíóúAEIOUÁÉÍÓÚ";
+ return vocales.Pos(caracter)>0;
+}
+
+
+bool EmpiezaEnVocal(AnsiString nombrecompleto)
+{ AnsiString aux=""; int largo;
+  int i=1; bool ban=false;
+ while (nombrecompleto[i]!=' '){
+  aux=aux+nombrecompleto[i]; i++;
+ }
+ if (!EsVocal(aux[1])) {
+  largo=aux.Length();
+  if (EsVocal(aux[largo]))
+   ban=true;
+ }else ban=false;
+ return ban;
+}
+
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button15Click(TObject *Sender)
+{
+ if (EmpiezaEnVocal(Edit8->Text)) {
+  ShowMessage("Si cumple");
+ }else ShowMessage("No cumple");
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Examen11Click(TObject *Sender)
+{ fstream f(rutafinal.c_str(),ios::in|ios::out|ios::binary);
+ RegAlumno alumnotemp; long posicion;
+ while (f.peek()!=EOF) {
+	posicion=f.tellg();
+	f.read((char*)&alumnotemp,sizeof(alumnotemp));
+	if (f.gcount()==sizeof(alumnotemp)) {
+	 if (EmpiezaEnVocal(alumnotemp.nom))
+	  alumnotemp.cod=alumnotemp.cod+5;
+	 f.seekp(posicion,ios::beg);
+	 f.write((char*)&alumnotemp,sizeof(alumnotemp));
+	 f.seekg(posicion+sizeof(alumnotemp),ios::beg);
+	}
+ }
+ f.close();
+ ShowMessage("Aumentado +5 a los que cumplen");
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Examen31Click(TObject *Sender)
+{AnsiString rutalocal;
+ if (OpenTextFileDialog1->Execute())
+	rutalocal = OpenTextFileDialog1->FileName;
+ ofstream pf2("temporal.tmp");
+ fstream pf1(rutalocal.c_str(), ios::in | ios::binary);
+
+ if (!pf1.fail()) {
+  AnsiString linea=""; char caracter;
+  while (pf1.read((char*)&caracter, 1)) {
+
+  }
+  pf1.close();
+  pf2.close();
+  ShowMessage("Proceso terminado correctamente");
+ }
+}
 //---------------------------------------------------------------------------
 

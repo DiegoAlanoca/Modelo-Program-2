@@ -3,12 +3,12 @@
 	<Transactions>
     <Transaction>2025/09/06 18:41:50.000.028,=C:\Users\LENOVO\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
     <Transaction>2025/09/06 18:41:50.000.364,=C:\Users\LENOVO\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
-    <Transaction>2025/11/11 10:44:15.000.303,=C:\Users\LENOVO\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
     <Transaction>2025/11/11 10:44:15.000.797,=C:\Users\LENOVO\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
-    <Transaction>2025/11/11 10:44:33.000.426,C:\Users\LENOVO\OneDrive\Desktop\Programacion II\Archivos\ArchivosEstruc(Datos)\Unit1.h=C:\Users\LENOVO\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.h</Transaction>
-    <Transaction>2025/11/11 10:44:33.000.426,C:\Users\LENOVO\OneDrive\Desktop\Programacion II\Archivos\ArchivosEstruc(Datos)\Unit1.cpp=C:\Users\LENOVO\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
-    <Transaction>2025/11/11 10:44:33.000.426,C:\Users\LENOVO\OneDrive\Desktop\Programacion II\Archivos\ArchivosEstruc(Datos)\Unit1.dfm=C:\Users\LENOVO\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2025/11/11 10:44:35.000.913,C:\Users\LENOVO\OneDrive\Desktop\Programacion II\Archivos\ArchivosEstruc(Datos)\Project1PCH1.h=C:\Users\LENOVO\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
-    <Transaction>2025/11/11 10:44:38.000.435,C:\Users\LENOVO\OneDrive\Desktop\Programacion II\Archivos\ArchivosEstruc(Datos)\Project1.cbproj=C:\Users\LENOVO\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
+    <Transaction>2025/11/11 10:44:15.000.303,=C:\Users\LENOVO\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2025/11/11 10:44:33.000.426,C:\Users\LENOVO\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.cpp=C:\Users\LENOVO\OneDrive\Desktop\Programacion II\Archivos\ArchivosEstruc(Datos)\Unit1.cpp</Transaction>
+    <Transaction>2025/11/11 10:44:33.000.426,C:\Users\LENOVO\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.h=C:\Users\LENOVO\OneDrive\Desktop\Programacion II\Archivos\ArchivosEstruc(Datos)\Unit1.h</Transaction>
+    <Transaction>2025/11/11 10:44:33.000.426,C:\Users\LENOVO\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\LENOVO\OneDrive\Desktop\Programacion II\Archivos\ArchivosEstruc(Datos)\Unit1.dfm</Transaction>
+    <Transaction>2025/11/11 10:44:35.000.913,C:\Users\LENOVO\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1PCH1.h=C:\Users\LENOVO\OneDrive\Desktop\Programacion II\Archivos\ArchivosEstruc(Datos)\Project1PCH1.h</Transaction>
+    <Transaction>2025/11/11 10:44:38.000.435,C:\Users\LENOVO\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1.cbproj=C:\Users\LENOVO\OneDrive\Desktop\Programacion II\Archivos\ArchivosEstruc(Datos)\Project1.cbproj</Transaction>
   </Transactions>
 </BorlandProject>

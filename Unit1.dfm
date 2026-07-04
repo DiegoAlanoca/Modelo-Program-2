@@ -15,8 +15,8 @@ object Form1: TForm1
   OnCreate = FormCreate
   TextHeight = 25
   object Label1: TLabel
-    Left = 78
-    Top = 72
+    Left = 54
+    Top = 40
     Width = 108
     Height = 32
     Caption = 'CODIGO :'
@@ -28,8 +28,8 @@ object Form1: TForm1
     ParentFont = False
   end
   object Label2: TLabel
-    Left = 75
-    Top = 128
+    Left = 51
+    Top = 96
     Width = 111
     Height = 32
     Caption = 'NOMBRE:'
@@ -41,8 +41,8 @@ object Form1: TForm1
     ParentFont = False
   end
   object Label3: TLabel
-    Left = 50
-    Top = 184
+    Left = 26
+    Top = 152
     Width = 136
     Height = 32
     Caption = 'DIRECCION:'
@@ -54,8 +54,8 @@ object Form1: TForm1
     ParentFont = False
   end
   object Label4: TLabel
-    Left = 104
-    Top = 235
+    Left = 80
+    Top = 203
     Width = 82
     Height = 32
     Caption = 'FECHA:'
@@ -74,8 +74,8 @@ object Form1: TForm1
     Caption = 'Just one click'
   end
   object Label6: TLabel
-    Left = 73
-    Top = 293
+    Left = 49
+    Top = 261
     Width = 113
     Height = 32
     Caption = 'NUMERO:'
@@ -86,9 +86,42 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
   end
+  object Label7: TLabel
+    Left = 25
+    Top = 397
+    Width = 152
+    Height = 25
+    Caption = 'Obligatorio indice'
+  end
+  object Label8: TLabel
+    Left = 206
+    Top = 518
+    Width = 10
+    Height = 15
+    Caption = '1)'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label9: TLabel
+    Left = 583
+    Top = 470
+    Width = 10
+    Height = 15
+    Caption = '2)'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentFont = False
+  end
   object Edit1: TEdit
-    Left = 208
-    Top = 75
+    Left = 184
+    Top = 43
     Width = 265
     Height = 33
     Font.Charset = ANSI_CHARSET
@@ -102,8 +135,8 @@ object Form1: TForm1
     OnExit = Edit1Exit
   end
   object Edit2: TEdit
-    Left = 208
-    Top = 131
+    Left = 184
+    Top = 99
     Width = 265
     Height = 33
     Font.Charset = ANSI_CHARSET
@@ -116,8 +149,8 @@ object Form1: TForm1
     Text = 'Edit2'
   end
   object Edit3: TEdit
-    Left = 208
-    Top = 187
+    Left = 184
+    Top = 155
     Width = 249
     Height = 33
     Font.Charset = ANSI_CHARSET
@@ -130,8 +163,8 @@ object Form1: TForm1
     Text = 'Edit3'
   end
   object Edit4: TEdit
-    Left = 208
-    Top = 238
+    Left = 184
+    Top = 206
     Width = 49
     Height = 33
     Font.Charset = ANSI_CHARSET
@@ -144,8 +177,8 @@ object Form1: TForm1
     Text = 'Edit4'
   end
   object Edit5: TEdit
-    Left = 263
-    Top = 238
+    Left = 239
+    Top = 206
     Width = 42
     Height = 33
     Font.Charset = ANSI_CHARSET
@@ -158,8 +191,8 @@ object Form1: TForm1
     Text = 'Edit5'
   end
   object Edit6: TEdit
-    Left = 311
-    Top = 238
+    Left = 287
+    Top = 206
     Width = 58
     Height = 33
     Font.Charset = ANSI_CHARSET
@@ -172,8 +205,8 @@ object Form1: TForm1
     Text = 'Edit6'
   end
   object Button1: TButton
-    Left = 32
-    Top = 382
+    Left = 25
+    Top = 350
     Width = 94
     Height = 41
     Caption = 'Limpiar'
@@ -187,8 +220,8 @@ object Form1: TForm1
     OnClick = Button1Click
   end
   object Button2: TButton
-    Left = 145
-    Top = 382
+    Left = 138
+    Top = 350
     Width = 104
     Height = 41
     Caption = 'Guardar'
@@ -217,10 +250,10 @@ object Form1: TForm1
     OnClick = Button3Click
   end
   object Button4: TButton
-    Left = 398
-    Top = 383
+    Left = 385
+    Top = 350
     Width = 113
-    Height = 42
+    Height = 41
     Caption = 'LISTADO'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -232,14 +265,14 @@ object Form1: TForm1
     OnClick = Button4Click
   end
   object Button5: TButton
-    Left = 545
-    Top = 385
-    Width = 97
+    Left = 744
+    Top = 350
+    Width = 137
     Height = 39
-    Caption = 'NomMay'
+    Caption = 'Nombres a Mayusculas'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -21
+    Font.Height = -12
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
@@ -247,14 +280,14 @@ object Form1: TForm1
     OnClick = Button5Click
   end
   object Button6: TButton
-    Left = 688
-    Top = 382
-    Width = 153
+    Left = 744
+    Top = 448
+    Width = 137
     Height = 41
-    Caption = 'DirMay'
+    Caption = 'Conv. Direccion Mayus'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -21
+    Font.Height = -12
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
@@ -271,16 +304,16 @@ object Form1: TForm1
     OnClick = Button7Click
   end
   object Edit7: TEdit
-    Left = 208
-    Top = 296
+    Left = 184
+    Top = 264
     Width = 249
     Height = 33
     TabOrder = 13
     Text = 'Edit7'
   end
   object Button8: TButton
-    Left = 279
-    Top = 384
+    Left = 264
+    Top = 350
     Width = 97
     Height = 41
     Caption = 'Eliminado'
@@ -294,9 +327,9 @@ object Form1: TForm1
     OnClick = Button8Click
   end
   object Button9: TButton
-    Left = 32
-    Top = 429
-    Width = 97
+    Left = 25
+    Top = 428
+    Width = 160
     Height = 41
     Caption = 'IdxCod'
     Font.Charset = DEFAULT_CHARSET
@@ -309,9 +342,9 @@ object Form1: TForm1
     OnClick = Button9Click
   end
   object Button10: TButton
-    Left = 398
-    Top = 431
-    Width = 113
+    Left = 432
+    Top = 425
+    Width = 145
     Height = 39
     Caption = 'IdxName'
     Font.Charset = DEFAULT_CHARSET
@@ -324,14 +357,14 @@ object Form1: TForm1
     OnClick = Button10Click
   end
   object Button11: TButton
-    Left = 145
-    Top = 429
-    Width = 104
+    Left = 25
+    Top = 475
+    Width = 160
     Height = 41
-    Caption = 'OrdIdxCod'
+    Caption = 'OrdIdxCod Menor a Mayor'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -21
+    Font.Height = -12
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
@@ -339,14 +372,14 @@ object Form1: TForm1
     OnClick = Button11Click
   end
   object Button12: TButton
-    Left = 279
-    Top = 431
-    Width = 97
+    Left = 206
+    Top = 473
+    Width = 172
     Height = 39
-    Caption = 'ListIdxCod'
+    Caption = 'ListIdxCod Listado Visible'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -21
+    Font.Height = -12
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
@@ -354,14 +387,14 @@ object Form1: TForm1
     OnClick = Button12Click
   end
   object Button13: TButton
-    Left = 529
+    Left = 207
     Top = 430
-    Width = 145
+    Width = 171
     Height = 37
-    Caption = 'ListCodeAtras'
+    Caption = 'ListCodeAtras Mayor a Menor'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -21
+    Font.Height = -12
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
@@ -369,14 +402,14 @@ object Form1: TForm1
     OnClick = Button13Click
   end
   object Button14: TButton
-    Left = 688
-    Top = 429
-    Width = 153
+    Left = 744
+    Top = 405
+    Width = 137
     Height = 37
-    Caption = 'ListMayor21'
+    Caption = 'Generar List. Mayor a 21'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -21
+    Font.Height = -12
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
@@ -384,7 +417,7 @@ object Form1: TForm1
     OnClick = Button14Click
   end
   object BitBtn1: TBitBtn
-    Left = 701
+    Left = 746
     Top = 512
     Width = 140
     Height = 33
@@ -393,8 +426,8 @@ object Form1: TForm1
     TabOrder = 21
   end
   object Button15: TButton
-    Left = 504
-    Top = 328
+    Left = 512
+    Top = 300
     Width = 369
     Height = 25
     Caption = 'Empieza en Consonante y termina en Vocal'
@@ -402,15 +435,45 @@ object Form1: TForm1
     OnClick = Button15Click
   end
   object Edit8: TEdit
-    Left = 73
-    Top = 22
+    Left = 603
+    Top = 155
     Width = 232
     Height = 33
     TabOrder = 23
-    Text = 'Edit8'
+    Text = 'Edit8 Pruebas'
+  end
+  object Button16: TButton
+    Left = 432
+    Top = 470
+    Width = 145
+    Height = 39
+    Caption = 'Ordenar Indice x Nombre'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 24
+    OnClick = Button16Click
+  end
+  object Button17: TButton
+    Left = 583
+    Top = 425
+    Width = 145
+    Height = 39
+    Caption = 'Listado Nombre Visible'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 25
+    OnClick = Button16Click
   end
   object MainMenu1: TMainMenu
-    Left = 592
+    Left = 528
     Top = 8
     object PracticasExamen1: TMenuItem
       Caption = 'Practicas Examen'
@@ -453,9 +516,16 @@ object Form1: TForm1
         OnClick = Examen31Click
       end
     end
+    object area1: TMenuItem
+      Caption = 'Tarea'
+      object N3Busquedabinaria1: TMenuItem
+        Caption = '3) Busqueda binaria x Codigo'
+        OnClick = N3Busquedabinaria1Click
+      end
+    end
   end
   object OpenTextFileDialog1: TOpenTextFileDialog
-    Left = 800
-    Top = 192
+    Left = 528
+    Top = 72
   end
 end

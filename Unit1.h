@@ -58,6 +58,13 @@ __published:	// IDE-managed Components
 	TEdit *Edit8;
 	TMenuItem *Examen11;
 	TMenuItem *Examen31;
+	TLabel *Label7;
+	TButton *Button16;
+	TLabel *Label8;
+	TLabel *Label9;
+	TButton *Button17;
+	TMenuItem *area1;
+	TMenuItem *N3Busquedabinaria1;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
@@ -84,6 +91,8 @@ __published:	// IDE-managed Components
 	void __fastcall Button15Click(TObject *Sender);
 	void __fastcall Examen11Click(TObject *Sender);
 	void __fastcall Examen31Click(TObject *Sender);
+	void __fastcall Button16Click(TObject *Sender);
+	void __fastcall N3Busquedabinaria1Click(TObject *Sender);
 
 
 

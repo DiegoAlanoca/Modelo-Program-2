@@ -772,3 +772,73 @@ void __fastcall TForm1::Examen31Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+
+
+void __fastcall TForm1::Button16Click(TObject *Sender)
+{
+	AnsiString nomArch = ruta + nom;
+	AnsiString lis = ruta + "ListadoIdxNom.txt";
+    RegAlumno reg; AnsiString linea; Word i, n; RegIdxNom rIdxN;
+    fstream f1(nomArch.c_str(), ios::binary | ios::in); // Archivo Datos
+    fstream f2(lis.c_str(), ios::out); // Archivo TXT salida
+    fstream f3(nomIdxNom.c_str(), ios::binary | ios::in); // Archivo Índice Nombres
+
+    if (!f3.fail()) {
+        linea = "LISTADO DE ALUMNOS POR NOMBRE";
+        n = linea.Length();
+        for (i = 1; i <= n; i++) f2.put(linea[i]);
+        f2.put(10);
+
+        while (!f3.eof()) {
+            f3.read((char*)&rIdxN, sizeof(rIdxN));
+            if (!f3.eof()) {
+                f1.seekg(rIdxN.pos);
+                f1.read((char*)&reg, sizeof(reg));
+                if (reg.marca != '*') { // Filtramos borrados lógicos
+                    linea = AnsiString(reg.nom) + "," + IntToStr((int)reg.cod) + "," + reg.dir + "," + IntToStr((int)reg.telf);
+                    n = linea.Length();
+                    for (i = 1; i <= n; i++) f2.put(linea[i]);
+                    f2.put(10);
+                }
+            }
+        }
+        f1.close(); f2.close(); f3.close();
+        ShowMessage("Listado por Nombre Generado Correctamente");
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::N3Busquedabinaria1Click(TObject *Sender)
+{
+    RegAlumno reg; Word codi; long int p;
+    AnsiString nomArch = ruta + nom;
+	codi = StrToInt(Edit1->Text);
+	p = BusBin(codi);
+
+    fstream f(nomArch.c_str(), ios::binary | ios::in);
+	if (!f.fail()) {
+		if (p >= 0) {
+            f.seekg(p);
+            f.read((char*)&reg, sizeof(reg));
+            if (reg.marca != '*') {
+                Edit2->Text = reg.nom;
+				Edit3->Text = reg.dir;
+                Edit4->Text = reg.fecha.dia;
+                Edit5->Text = reg.fecha.mes;
+                Edit6->Text = reg.fecha.año;
+                Edit7->Text = reg.telf;
+            } else {
+                Button1Click(Sender);
+                Edit1->Text = codi;
+                ShowMessage("El registro se encuentra eliminado.");
+            }
+		}
+		else {
+            Button1Click(Sender);
+            Edit1->Text = codi;
+        }
+        f.close();
+	}
+}
+//---------------------------------------------------------------------------
+

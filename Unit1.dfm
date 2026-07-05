@@ -523,6 +523,13 @@ object Form1: TForm1
         OnClick = N3Busquedabinaria1Click
       end
     end
+    object Examenfinal1: TMenuItem
+      Caption = 'Examen final'
+      object N2do1: TMenuItem
+        Caption = '2do'
+        OnClick = N2do1Click
+      end
+    end
   end
   object OpenTextFileDialog1: TOpenTextFileDialog
     Left = 528

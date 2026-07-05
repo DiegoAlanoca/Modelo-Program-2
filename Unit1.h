@@ -65,6 +65,8 @@ __published:	// IDE-managed Components
 	TButton *Button17;
 	TMenuItem *area1;
 	TMenuItem *N3Busquedabinaria1;
+	TMenuItem *Examenfinal1;
+	TMenuItem *N2do1;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
@@ -93,6 +95,7 @@ __published:	// IDE-managed Components
 	void __fastcall Examen31Click(TObject *Sender);
 	void __fastcall Button16Click(TObject *Sender);
 	void __fastcall N3Busquedabinaria1Click(TObject *Sender);
+	void __fastcall N2do1Click(TObject *Sender);
 
 
 
@@ -135,6 +138,18 @@ struct RegAlumno{
  Cardinal telf; //6 bytes
  // 75 bytes
 };
+
+
+struct RegAlumno2 {
+	char marca;    // 1 byte
+    Word cod;      // 2 bytes
+	char nom[31];  // 31 bytes
+    Tfecha fecha;  // 4 bytes
+	Cardinal telf; // 4 bytes
+};
+
+// En la sección __published de la clase TForm1, declare el nuevo evento del botón:
+void __fastcall Button17Click(TObject *Sender);
 
 struct RegIdxCod{ //Indices por codigo
  Word cod; //Campo de busqueda

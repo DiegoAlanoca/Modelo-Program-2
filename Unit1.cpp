@@ -2,6 +2,8 @@
 
 #include <vcl.h>
 #pragma hdrstop
+#include <fstream>
+#include <sstream>
 
 #include "Unit1.h"
 //---------------------------------------------------------------------------
@@ -838,6 +840,57 @@ void __fastcall TForm1::N3Busquedabinaria1Click(TObject *Sender)
             Edit1->Text = codi;
         }
         f.close();
+	}
+}
+//---------------------------------------------------------------------------
+void ReconstruirArchivo(AnsiString rutaTexto, AnsiString rutaBinario)
+{
+    std::ifstream fTexto(rutaTexto.c_str());
+    std::ofstream fBinario(rutaBinario.c_str(), std::ios::binary | std::ios::out);
+
+    if (!fTexto.fail() && !fBinario.fail()) {
+		std::string linea;
+        while (std::getline(fTexto, linea)) {
+			if (linea.empty())
+				continue;
+			std::stringstream ss(linea);
+			std::string s_cod, s_nom, s_dia, s_mes, s_ano, s_telf;
+			if (std::getline(ss, s_cod, ',') &&
+				std::getline(ss, s_nom, ',') &&
+				std::getline(ss, s_dia, ',') &&
+                std::getline(ss, s_mes, ',') &&
+                std::getline(ss, s_ano, ',') &&
+                std::getline(ss, s_telf))
+            {
+                RegAlumno2 reg;
+                reg.marca = ' ';
+				reg.cod = (Word)std::atoi(s_cod.c_str());
+                std::strncpy(reg.nom, s_nom.c_str(), sizeof(reg.nom) - 1);
+                reg.nom[sizeof(reg.nom) - 1] = '\0';
+
+                reg.fecha.dia = (byte)std::atoi(s_dia.c_str());
+                reg.fecha.mes = (byte)std::atoi(s_mes.c_str());
+                reg.fecha.año = (Word)std::atoi(s_ano.c_str());
+                reg.telf = (Cardinal)std::strtoul(s_telf.c_str(), NULL, 10);
+
+				fBinario.write((char*)&reg, sizeof(RegAlumno2));
+            }
+        }
+	}
+	if (fTexto.is_open())
+		fTexto.close();
+	if (fBinario.is_open())
+		fBinario.close();
+}
+
+void __fastcall TForm1::N2do1Click(TObject *Sender)
+{
+	if (OpenTextFileDialog1->Execute()) {
+		AnsiString rutaTexto = OpenTextFileDialog1->FileName;
+		AnsiString rutaBinario = ruta + "Alumnos_reconstruido.dat";
+        ReconstruirArchivo(rutaTexto, rutaBinario);
+
+        ShowMessage("Proceso de reconstrucción finalizado.");
 	}
 }
 //---------------------------------------------------------------------------
